@@ -1,4 +1,4 @@
-# Changing Table Map
+# Change Spot
 
 A crowdsourced web application that helps parents and caregivers quickly find **bathrooms with baby changing tables nearby**.
 
