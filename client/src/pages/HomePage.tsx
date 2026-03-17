@@ -1,4 +1,5 @@
 import { useGetLocations } from "../api/locations";
+import Map from "../components/Map";
 
 export default function HomePage() {
   const { data, isLoading, isError } = useGetLocations();
@@ -11,7 +12,7 @@ export default function HomePage() {
       <h1>ChangeSpot</h1>
 
       <h2>Nearby Changing Tables</h2>
-
+        <Map />
       <ul>
         {(data ?? []).map((location) => (
           <li key={location.id}>
