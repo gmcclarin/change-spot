@@ -1,4 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, OneToMany } from "typeorm";
+import { Vote } from "./Vote";
+import { LocationFeature } from "./LocationFeature";
 
 @Entity()
 export class Location {
@@ -22,4 +24,10 @@ export class Location {
 
   @CreateDateColumn({ name: "created_at" })
   createdAt!: Date;
+
+  @OneToMany(() => LocationFeature, (lf) => lf.location)
+locationFeatures!: LocationFeature[];
+
+@OneToMany(() => Vote, (vote) => vote.location)
+votes!: Vote[];
 }
