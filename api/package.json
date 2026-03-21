@@ -11,6 +11,7 @@
   "description": "",
   "dependencies": {
     "@vercel/node": "^5.6.15",
+    "dotenv": "^17.3.1",
     "pg": "^8.20.0",
     "reflect-metadata": "^0.2.2",
     "typeorm": "^0.3.28"

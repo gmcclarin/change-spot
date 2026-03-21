@@ -1,9 +1,9 @@
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 
 @Entity()
-export class Feature {
-  @PrimaryGeneratedColumn("uuid")
-  id!: string;
+export class Test {
+  @PrimaryGeneratedColumn()
+  id!: number;
 
   @Column({ type: "varchar" })
   name!: string;

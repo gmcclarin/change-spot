@@ -1,4 +1,6 @@
 import { AppDataSource } from "../db/data-source";
+import { Location } from "../entities/Location";
+
 
 export class LocationRepository {
     private typeOrm;

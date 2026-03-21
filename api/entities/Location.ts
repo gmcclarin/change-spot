@@ -1,33 +1,25 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, OneToMany } from "typeorm";
-import { Vote } from "./Vote";
-import { LocationFeature } from "./LocationFeature";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn } from "typeorm";
 
 @Entity()
 export class Location {
   @PrimaryGeneratedColumn("uuid")
   id!: string;
 
-  @Column()
+  @Column({ type: "varchar" })
   name!: string;
 
-  @Column({ nullable: true })
+  @Column({ type: "varchar", nullable: true })
   address!: string;
 
-  @Column("double precision")
+  @Column({ type: "double precision" })
   latitude!: number;
 
-  @Column("double precision")
+  @Column({ type: "double precision" })
   longitude!: number;
 
-  @Column({ name: "google_place_id", nullable: true })
+  @Column({ type: "varchar", name: "google_place_id", nullable: true })
   googlePlaceId!: string;
 
-  @CreateDateColumn({ name: "created_at" })
+  @CreateDateColumn({ type: "timestamp", name: "created_at" })
   createdAt!: Date;
-
-  @OneToMany(() => LocationFeature, (lf) => lf.location)
-locationFeatures!: LocationFeature[];
-
-@OneToMany(() => Vote, (vote) => vote.location)
-votes!: Vote[];
 }
