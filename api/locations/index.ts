@@ -1,8 +1,8 @@
 import "reflect-metadata";
 import "dotenv/config";
 import { VercelRequest, VercelResponse } from "@vercel/node";
-import { LocationRepository } from "../repositories/locationRepository";
 import { initDB } from "../db/init";
+import { LocationService } from "../services/locations";
 
 export default async function handler(
   req: VercelRequest,
@@ -10,8 +10,8 @@ export default async function handler(
 ) {
   try {
     await initDB();
-    const locationRepo = new LocationRepository();
-    const locations = await locationRepo.find();
+    const locationService = new LocationService();
+    const locations = await locationService.getAllLocations();
 
     return res.status(200).json(locations);
   } catch (error) {

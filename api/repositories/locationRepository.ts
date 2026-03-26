@@ -24,4 +24,21 @@ export class LocationRepository {
             throw new Error("Error occurred while creating location");
         }
     }
+
+    async update(id:number, locationData: Partial<Location>): Promise<Location> {
+        try {
+            
+            const location = await this.typeOrm.findOneBy({ id });
+
+            if (!location) {
+                throw new Error("Location not found");
+            }
+            
+            await this.typeOrm.update(id, locationData);
+            const updatedLocation = await this.typeOrm.findOneBy({ id });
+            return updatedLocation;
+        } catch ( error ) {
+            throw new Error("Error occurred while updating location");
+        }
+    }
 }
