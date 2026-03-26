@@ -15,4 +15,13 @@ export class LocationRepository {
             throw new Error("Error occurred while fetching locations");
         }
     }
+
+    async create(locationData: Partial<Location>): Promise<Location> {
+        try {
+            const location = this.typeOrm.create(locationData);
+            return await this.typeOrm.save(location);
+        } catch (error) {
+            throw new Error("Error occurred while creating location");
+        }
+    }
 }

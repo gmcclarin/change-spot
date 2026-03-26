@@ -9,20 +9,9 @@ export default async function handler(
   res: VercelResponse
 ) {
   try {
-
-    console.log("starting this ")
-
     await initDB();
-
-    console.log("🚀 API route START");
-
     const locationRepo = new LocationRepository();
-
-    console.log("📦 Repo created");
-
     const locations = await locationRepo.find();
-
-    console.log("📊 Locations fetched:", locations);
 
     return res.status(200).json(locations);
   } catch (error) {
