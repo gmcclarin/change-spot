@@ -11,11 +11,15 @@ export class LocationService {
     return this.locationRepo.find();
   }
 
-  async getLocationById(id:number) {
+  async getLocationById(id:string) {
     return this.locationRepo.findById(id);
   }
 
-  async updateLocation(id: number, data: any) {
+  async updateLocation(id: string, data: any) {
     return this.locationRepo.update(id, data);
   } 
+
+  async deleteLocation(id:string) {
+    return this.locationRepo.delete(id);
+  }
 }

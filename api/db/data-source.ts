@@ -14,7 +14,6 @@ export const AppDataSource = new DataSource({
    ssl: {
     rejectUnauthorized: false,
   },
-  // entities: [__dirname + "/../entities/*.{ts,js}"],
   entities: [Location, Feature, LocationFeature, Vote],
   logging: true,
 });

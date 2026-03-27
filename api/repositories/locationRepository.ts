@@ -16,7 +16,7 @@ export class LocationRepository {
         }
     }
 
-    async findById(id:number) {
+    async findById(id:string) {
         try {
             return await this.typeOrm.findOneBy({ id});
         } catch ( error ) {
@@ -33,7 +33,7 @@ export class LocationRepository {
         }
     }
 
-    async update(id:number, locationData: Partial<Location>): Promise<Location> {
+    async update(id:string, locationData: Partial<Location>): Promise<Location> {
         try {
             
             const location = await this.typeOrm.findOneBy({ id });
@@ -47,6 +47,21 @@ export class LocationRepository {
             return updatedLocation;
         } catch ( error ) {
             throw new Error("Error occurred while updating location");
+        }
+    }
+
+    async delete(id:string):Promise<void> {
+        try {
+            const location = await this.typeOrm.findOneBy({ id });
+
+            if ( !location ) {
+                throw new Error("Location not found");
+            }
+
+            await this.typeOrm.delete(id);
+        } catch (error) {
+            throw new Error("Error occurred while deleting location");
+
         }
     }
 }
