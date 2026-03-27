@@ -16,6 +16,14 @@ export class LocationRepository {
         }
     }
 
+    async findById(id:number) {
+        try {
+            return await this.typeOrm.findOneBy({ id});
+        } catch ( error ) {
+            throw new Error("Error occurred while fetching location by ID");
+        }
+    }
+
     async create(locationData: Partial<Location>): Promise<Location> {
         try {
             const location = this.typeOrm.create(locationData);
