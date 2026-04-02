@@ -5,4 +5,5 @@ export interface Location {
   longitude: number;
   address?: string;
   hasChangingTable: boolean;
+  hasAccessibleStall: boolean;
 }

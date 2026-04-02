@@ -1,26 +1,29 @@
+import { useState } from "react";
 import { useGetLocations } from "../api/locations";
 import Map from "../components/Map";
+import { LocationDrawer } from "../components/LocationDrawer";
+import type { Location } from "../types/location";
 
 export default function HomePage() {
   const { data, isLoading, isError } = useGetLocations();
+  const [selectedLocation, setSelectedLocation] = useState<Location | null>(null);
 
-  if (isLoading) return <div>Loading locations...</div>;
-  if (isError) return <div>Failed to load locations</div>;
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error</div>;
 
   return (
-    <div style={{ padding: "2rem" }}>
-      <h1>ChangeSpot</h1>
+    <div>
+      <Map
+        locations={data ?? []}
+        onSelectLocation={setSelectedLocation}
+      />
 
-      <h2>Nearby Changing Tables</h2>
-        <Map />
-      <ul>
-        {(data ?? []).map((location) => (
-          <li key={location.id}>
-            <strong>{location.name}</strong> —{" "}
-            {location.hasChangingTable ? "Changing table available" : "No table"}
-          </li>
-        ))}
-      </ul>
+      {selectedLocation && (
+        <LocationDrawer
+          location={selectedLocation}
+          onClose={() => setSelectedLocation(null)}
+        />
+      )}
     </div>
   );
 }
